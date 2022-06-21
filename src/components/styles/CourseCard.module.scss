@@ -1,0 +1,60 @@
+.courseCardWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  border: 1px #359edb solid;
+  background-color: white;
+
+  width: auto;
+  min-height: 20rem;
+  max-height: 20rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .courseCardTitle {
+    padding: 1rem 1rem 0rem 1rem;
+    font-weight: 900;
+  }
+
+  .courseCardPrice {
+    padding: 0rem 1rem;
+    font-weight: 500;
+  }
+
+  .courseCardDifficulty {
+    padding: 0.75rem 1rem 0rem 1rem;
+  }
+
+  .courseCardDescription {
+    padding: 0.75rem 1rem;
+  }
+
+  .courseCardTags {
+    list-style-position: inside;
+    list-style-type: square;
+    list-style: none;
+    margin: 0;
+    padding: 0rem 1rem;
+
+    .tagItem {
+      margin-bottom: 1rem;
+    }
+
+    .tagItem::before {
+      content: "■";
+      color: #359edb;
+      margin-right: 0.7rem;
+    }
+  }
+
+  .courseCardActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
