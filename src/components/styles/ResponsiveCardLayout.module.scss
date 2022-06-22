@@ -7,8 +7,10 @@
   display: grid;
   padding: 2rem;
   gap: 5px;
-  row-gap: 2rem;
+  row-gap: 1rem;
   background: rgb(224, 230, 255);
+  width: auto;
+  height: 100%;
 }
 
 // Desktop devices (currently with no extra support for high res screens!)
