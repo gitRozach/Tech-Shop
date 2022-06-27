@@ -17,19 +17,23 @@
   .courseCardTitle {
     padding: 1rem 1rem 0rem 1rem;
     font-weight: 900;
+    min-height: 1rem;
   }
 
   .courseCardPrice {
     padding: 0rem 1rem;
     font-weight: 500;
+    min-height: 1rem;
   }
 
   .courseCardDifficulty {
     padding: 0.75rem 1rem 0rem 1rem;
+    min-height: 1rem;
   }
 
   .courseCardDescription {
     padding: 0.75rem 1rem;
+    min-height: 1rem;
   }
 
   .courseCardTags {

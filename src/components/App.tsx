@@ -18,8 +18,9 @@ const App = () => {
     tagsInput,
     CourseManager,
   ] = CourseManagerPage({
-    children: storedCards.map((item) => (
+    children: storedCards.map((item, index) => (
       <CourseCard
+        cardId={item.cardId}
         title={item.title}
         description={item.description}
         difficulty={item.difficulty}
@@ -30,6 +31,7 @@ const App = () => {
     onCreateHandler: () => {
       setFormShowing(false);
       addNewCard({
+        cardId: Date.now().toString(),
         description: descriptionInput.toString(),
         difficulty: levelInput.toString() as COURSEDIFFICULTY,
         price: parseInt(priceInput.toString()),
@@ -51,12 +53,12 @@ const App = () => {
     return true;
   };
 
-  const deleteCard = (title: string): boolean => {
+  const deleteCard = (cardId: string): boolean => {
     const ITEMNOTFOUNDINDEXVAL = -1;
     let deleteIndex: number = ITEMNOTFOUNDINDEXVAL;
 
     storedCards.forEach((item, currentIndex) => {
-      if (item.title === title) {
+      if (item.cardId === cardId) {
         deleteIndex = currentIndex;
       }
     });
@@ -109,16 +111,14 @@ const App = () => {
         <CourseOverviewPage
           children={storedCards.map((item, index) => (
             <CourseCard
-              key={`card-${index}`}
+              cardId={`card-${index}`}
+              key={item.cardId}
               title={item.title}
               description={item.description}
               difficulty={item.difficulty}
               price={item.price}
               tags={item.tags}
-              onDeleteHandler={() => {
-                console.log("xd");
-                deleteCard(item.title ?? "");
-              }}
+              onDeleteHandler={() => deleteCard(item.cardId ?? "")}
             />
           ))}
         />

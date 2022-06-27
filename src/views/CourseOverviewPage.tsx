@@ -1,4 +1,5 @@
 import { ResponsiveCardLayout } from "../components/ResponsiveCardLayout";
+import styles from "./styles/CourseOverviewPage.module.scss";
 
 export type ICourseOverviewPageProps = {
   children?: React.ReactNode;
@@ -7,5 +8,9 @@ export type ICourseOverviewPageProps = {
 export const CourseOverviewPage = (props: ICourseOverviewPageProps) => {
   const { children } = props;
 
-  return <ResponsiveCardLayout>{children}</ResponsiveCardLayout>;
+  return (
+    <div className={styles.overviewPageWrapper}>
+      <ResponsiveCardLayout>{children}</ResponsiveCardLayout>
+    </div>
+  );
 };
