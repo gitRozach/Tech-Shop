@@ -10,6 +10,34 @@ const App = () => {
   const LOCALSTORAGEACCESSOR = "storedCards";
   const [storedCards, setStoredCards] = useState<Array<ICourseCardProps>>([]);
   const [formShowing, setFormShowing] = useState<boolean>(false);
+  const [
+    titleInput,
+    priceInput,
+    levelInput,
+    descriptionInput,
+    tagsInput,
+    CourseManager,
+  ] = CourseManagerPage({
+    children: storedCards.map((item) => (
+      <CourseCard
+        title={item.title}
+        description={item.description}
+        difficulty={item.difficulty}
+        price={item.price}
+        tags={item.tags}
+      />
+    )),
+    onCreateHandler: () => {
+      setFormShowing(false);
+      addNewCard({
+        description: descriptionInput.toString(),
+        difficulty: levelInput.toString() as COURSEDIFFICULTY,
+        price: parseInt(priceInput.toString()),
+        tags: [],
+        title: titleInput.toString(),
+      });
+    },
+  });
 
   const addNewCard = (item: ICourseCardProps) => {
     const newStorageList = storedCards.concat([item]);
@@ -52,17 +80,7 @@ const App = () => {
         />
       </HeaderBar>
       {formShowing ? (
-        <CourseManagerPage
-          onCreateHandler={() =>
-            addNewCard({
-              description: "test",
-              difficulty: COURSEDIFFICULTY.entry,
-              price: 10,
-              tags: ["test", "123"],
-              title: "This is a title",
-            })
-          }
-        />
+        CourseManager
       ) : (
         <CourseOverviewPage
           children={storedCards.map((item) => (

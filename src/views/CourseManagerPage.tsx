@@ -1,6 +1,5 @@
 import { MouseEventHandler, useState } from "react";
 import { Button } from "../components/Button";
-import { COURSEDIFFICULTY } from "../components/CourseCard";
 import { VBoxLayout } from "../components/VBoxLayout";
 
 export type ICourseManagerPageProps = {
@@ -16,7 +15,12 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
   const [descriptionInput, setDescriptionInput] = useState<string>("");
   const [tagsInput, setTagsInput] = useState<string>("");
 
-  return (
+  return [
+    titleInput,
+    priceInput,
+    levelInput,
+    descriptionInput,
+    tagsInput,
     <VBoxLayout>
       <label>
         <p>Kursname:</p>
@@ -42,6 +46,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           type="text"
           id="courseDifficultyInput"
           name="courseDifficultyInput"
+          onChange={(e) => setLevelInput(e.target.value)}
         />
       </label>
       <label>
@@ -50,14 +55,20 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           type="text"
           id="courseDescriptionInput"
           name="courseDescriptionInput"
+          onChange={(e) => setDescriptionInput(e.target.value)}
         />
       </label>
       <label>
         <p>Tags:</p>
-        <input type="text" id="courseTagsInput" name="courseTagsInput" />
+        <input
+          type="text"
+          id="courseTagsInput"
+          name="courseTagsInput"
+          onChange={(e) => setTagsInput(e.target.value)}
+        />
       </label>
       <br />
       <Button title="Kurs erstellen" hasColor onClick={onCreateHandler} />
-    </VBoxLayout>
-  );
+    </VBoxLayout>,
+  ];
 };
