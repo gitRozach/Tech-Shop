@@ -29,6 +29,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           id="courseNameInput"
           name="courseNameInput"
           onChange={(e) => setTitleInput(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -38,6 +39,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           id="coursePriceInput"
           name="coursePriceInput"
           onChange={(e) => setPriceInput(parseInt(e.target.value))}
+          required
         />
       </label>
       <label>
@@ -47,6 +49,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           id="courseDifficultyInput"
           name="courseDifficultyInput"
           onChange={(e) => setLevelInput(e.target.value)}
+          required
         />
       </label>
       <label>
@@ -56,6 +59,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
           id="courseDescriptionInput"
           name="courseDescriptionInput"
           onChange={(e) => setDescriptionInput(e.target.value)}
+          required
         />
       </label>
       <label>

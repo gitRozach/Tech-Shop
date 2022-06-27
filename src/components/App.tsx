@@ -39,9 +39,33 @@ const App = () => {
     },
   });
 
-  const addNewCard = (item: ICourseCardProps) => {
+  const addNewCard = (item: ICourseCardProps): boolean => {
+    storedCards.forEach((currentItem) => {
+      if (currentItem.title === item.title) {
+        return false;
+      }
+    });
+
     const newStorageList = storedCards.concat([item]);
     setStoredCards(newStorageList);
+    return true;
+  };
+
+  const deleteCard = (title: string): boolean => {
+    const ITEMNOTFOUNDINDEXVAL = -1;
+    let deleteIndex: number = ITEMNOTFOUNDINDEXVAL;
+
+    storedCards.forEach((item, currentIndex) => {
+      if (item.title === title) {
+        deleteIndex = currentIndex;
+      }
+    });
+    if (deleteIndex === ITEMNOTFOUNDINDEXVAL) return false;
+
+    const newStorageList = [...storedCards];
+    newStorageList.splice(deleteIndex, 1);
+    setStoredCards(newStorageList);
+    return true;
   };
 
   useEffect(() => {
@@ -83,13 +107,18 @@ const App = () => {
         CourseManager
       ) : (
         <CourseOverviewPage
-          children={storedCards.map((item) => (
+          children={storedCards.map((item, index) => (
             <CourseCard
+              key={`card-${index}`}
               title={item.title}
               description={item.description}
               difficulty={item.difficulty}
               price={item.price}
               tags={item.tags}
+              onDeleteHandler={() => {
+                console.log("xd");
+                deleteCard(item.title ?? "");
+              }}
             />
           ))}
         />

@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { Button } from "./Button";
 import styles from "./styles/CourseCard.module.scss";
 
@@ -14,10 +15,20 @@ export type ICourseCardProps = {
   difficulty?: COURSEDIFFICULTY;
   description?: string;
   tags?: Array<string>;
+  onOrderHandler?: MouseEventHandler;
+  onDeleteHandler?: MouseEventHandler;
 };
 
 export const CourseCard = (props: ICourseCardProps) => {
-  const { title, price, difficulty, description, tags } = props;
+  const {
+    title,
+    price,
+    difficulty,
+    description,
+    tags,
+    onOrderHandler,
+    onDeleteHandler,
+  } = props;
 
   // Verwendung von Hardcode-Werten, Bad Practice aber wird zur Demonstration einfach gehalten
   return (
@@ -40,10 +51,8 @@ export const CourseCard = (props: ICourseCardProps) => {
         )) ?? "UNKNOWN TAGS"}
       </ul>
       <div className={styles.courseCardActions}>
-        <Button
-          title="Jetzt bestellen"
-          onClick={(_) => console.log("hello world")}
-        />
+        <Button title="Jetzt bestellen" onClick={onOrderHandler} />
+        <Button title="Kurs entfernen" onClick={onDeleteHandler} />
       </div>
     </div>
   );
