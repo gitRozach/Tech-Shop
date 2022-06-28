@@ -1,6 +1,8 @@
 import { MouseEventHandler, useState } from "react";
-import { Button } from "../components/Button";
+import styles from "./styles/CourseManagerPage.module.scss";
+import { Button, BUTTONKIND } from "../components/Button";
 import { VBoxLayout } from "../components/VBoxLayout";
+import { COURSEDIFFICULTY } from "../components/CourseCard";
 
 export type ICourseManagerPageProps = {
   children?: React.ReactNode;
@@ -11,7 +13,7 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
   const { onCreateHandler } = props;
   const [titleInput, setTitleInput] = useState<string>("");
   const [priceInput, setPriceInput] = useState<number>(0);
-  const [levelInput, setLevelInput] = useState<string>("");
+  const [levelInput, setLevelInput] = useState<string>(COURSEDIFFICULTY.entry);
   const [descriptionInput, setDescriptionInput] = useState<string>("");
   const [tagsInput, setTagsInput] = useState<string>("");
 
@@ -21,58 +23,73 @@ export const CourseManagerPage = (props: ICourseManagerPageProps) => {
     levelInput,
     descriptionInput,
     tagsInput,
-    <VBoxLayout>
-      <label>
-        <p>Kursname:</p>
-        <input
-          type="text"
-          id="courseNameInput"
-          name="courseNameInput"
-          onChange={(e) => setTitleInput(e.target.value)}
-          required
+    <div className={styles.managerPageWrapper}>
+      <VBoxLayout>
+        <label>
+          <p className={styles.inputLabel}>Kursname:</p>
+          <input
+            className={styles.inputText}
+            type="text"
+            id="courseNameInput"
+            name="courseNameInput"
+            onChange={(e) => setTitleInput(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <p className={styles.inputLabel}>Preis:</p>
+          <input
+            className={styles.inputText}
+            type="text"
+            id="coursePriceInput"
+            name="coursePriceInput"
+            onChange={(e) => setPriceInput(parseInt(e.target.value))}
+            required
+          />
+        </label>
+        <label>
+          <p className={styles.inputLabel}>Level:</p>
+          <select
+            className={styles.inputSelect}
+            id="courseDifficultyInput"
+            name="courseDifficultyInput"
+            defaultValue={COURSEDIFFICULTY.entry}
+            onChange={(e) => setLevelInput(e.target.value)}
+            required
+          >
+            {Object.values(COURSEDIFFICULTY).map((item, index) => (
+              <option key={`option-${index}`}>{item}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <p className={styles.inputLabel}>Beschreibung:</p>
+          <input
+            className={styles.inputText}
+            type="text"
+            id="courseDescriptionInput"
+            name="courseDescriptionInput"
+            onChange={(e) => setDescriptionInput(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <p className={styles.inputLabel}>Tags:</p>
+          <input
+            className={styles.inputText}
+            type="text"
+            id="courseTagsInput"
+            name="courseTagsInput"
+            onChange={(e) => setTagsInput(e.target.value)}
+          />
+        </label>
+        <br />
+        <Button
+          title="Kurs erstellen"
+          kind={BUTTONKIND.success}
+          onClick={onCreateHandler}
         />
-      </label>
-      <label>
-        <p>Preis:</p>
-        <input
-          type="text"
-          id="coursePriceInput"
-          name="coursePriceInput"
-          onChange={(e) => setPriceInput(parseInt(e.target.value))}
-          required
-        />
-      </label>
-      <label>
-        <p>Level:</p>
-        <input
-          type="text"
-          id="courseDifficultyInput"
-          name="courseDifficultyInput"
-          onChange={(e) => setLevelInput(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        <p>Beschreibung:</p>
-        <input
-          type="text"
-          id="courseDescriptionInput"
-          name="courseDescriptionInput"
-          onChange={(e) => setDescriptionInput(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        <p>Tags:</p>
-        <input
-          type="text"
-          id="courseTagsInput"
-          name="courseTagsInput"
-          onChange={(e) => setTagsInput(e.target.value)}
-        />
-      </label>
-      <br />
-      <Button title="Kurs erstellen" hasColor onClick={onCreateHandler} />
-    </VBoxLayout>,
+      </VBoxLayout>
+    </div>,
   ];
 };

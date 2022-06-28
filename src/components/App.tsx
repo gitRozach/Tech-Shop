@@ -1,10 +1,11 @@
 import styles from "./styles/App.module.scss";
 import { HeaderBar } from "./HeaderBar";
 import { CourseCard, COURSEDIFFICULTY, ICourseCardProps } from "./CourseCard";
-import { Button } from "./Button";
+import { Button, BUTTONKIND } from "./Button";
 import { useEffect, useState } from "react";
 import { CourseOverviewPage } from "../views/CourseOverviewPage";
 import { CourseManagerPage } from "../views/CourseManagerPage";
+import { NoItemsToDisplay } from "./NoItemsToDisplay";
 
 const App = () => {
   const LOCALSTORAGEACCESSOR = "storedCards";
@@ -35,7 +36,10 @@ const App = () => {
         description: descriptionInput.toString(),
         difficulty: levelInput.toString() as COURSEDIFFICULTY,
         price: parseInt(priceInput.toString()),
-        tags: [],
+        tags: tagsInput
+          ?.toString()
+          .split(",")
+          .map((val) => val.trim()),
         title: titleInput.toString(),
       });
     },
@@ -94,12 +98,12 @@ const App = () => {
       <HeaderBar>
         <Button
           title="Kursübersicht"
-          hasColor={false}
+          kind={BUTTONKIND.transparent}
           onClick={(_) => setFormShowing(false)}
         />
         <Button
           title="Kurs hinzufügen"
-          hasColor={false}
+          kind={BUTTONKIND.transparent}
           onClick={(_) => {
             setFormShowing(true);
           }}
@@ -107,6 +111,8 @@ const App = () => {
       </HeaderBar>
       {formShowing ? (
         CourseManager
+      ) : storedCards.length === 0 ? (
+        <NoItemsToDisplay onAddItemsHandler={() => setFormShowing(true)} />
       ) : (
         <CourseOverviewPage
           children={storedCards.map((item, index) => (

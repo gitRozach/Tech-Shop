@@ -1,27 +1,54 @@
-.coloredButton {
+.buttonBase {
   border: 0px #000 solid;
   border-radius: 0.25rem;
-  min-height: 2.25rem;
-  min-width: 10rem;
   color: white;
-  background: #c92a8a;
+  min-height: 2.25rem;
+  min-width: 2.25rem;
+  padding: 0.25rem 0.5rem;
+  font-weight: 900;
   font-family: "Roboto";
+}
 
+.defaultButton {
+  background: rgb(53, 158, 219);
+  &:hover {
+    background: rgba(53, 158, 219, 0.7)
+  }
+}
+
+.successButton {
+  background: rgb(51, 204, 51);
+  &:hover {
+    background: rgba(51, 204, 51, 0.7);
+  }
+}
+
+.warningButton {
+  background: #c92a8a;
   &:hover {
     background: rgba(201, 42, 138, 0.7);
   }
 }
 
-.transparentButton {
-  border: 0px #000 solid;
-  border-radius: 0;
-  min-height: 2.25rem;
-  min-width: 10rem;
-  color: white;
-  background: transparent;
-  font-family: "Roboto";
-
+.dangerButton {
+  background: rgb(255, 51, 0);
   &:hover {
-    color: gray;
+    background: rgba(255, 51, 0, 0.7);
+  }
+}
+
+.transparentButton {
+  background: transparent;
+  &:hover {
+    color: rgb(140, 140, 140);
+  }
+}
+
+.closeButton {
+  background: transparent;
+  color: rgb(140, 140, 140);
+  &:hover {
+    background: rgba(255, 51, 0, 0.9);
+    color: white;
   }
 }

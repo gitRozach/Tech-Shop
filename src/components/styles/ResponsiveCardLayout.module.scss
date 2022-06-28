@@ -6,11 +6,11 @@
 .responsiveCardLayout {
   display: grid;
   padding: 2rem;
-  gap: 5px;
-  row-gap: 1rem;
+  gap: 10px;
+  row-gap: 10px;
   background: rgb(224, 230, 255);
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 // Desktop devices (currently with no extra support for high res screens!)

@@ -1,5 +1,6 @@
 import { MouseEventHandler } from "react";
-import { Button } from "./Button";
+import { Button, BUTTONKIND } from "./Button";
+import CloseIcon from "@mui/icons-material/Close";
 import styles from "./styles/CourseCard.module.scss";
 
 // Hier haette ich eher Uebersetzungen verwendet, statt Hardcode-Deutsch zu uebergeben. (useTranslation hook)
@@ -34,6 +35,15 @@ export const CourseCard = (props: ICourseCardProps) => {
   // Verwendung von Hardcode-Werten, Bad Practice aber wird zur Demonstration einfach gehalten
   return (
     <div className={styles.courseCardWrapper}>
+      <div className={styles.closeButtonWrapper}>
+        <Button
+          title=""
+          kind={BUTTONKIND.close}
+          onClick={onDeleteHandler}
+          className={styles.closeButton}
+          children={<CloseIcon />}
+        />
+      </div>
       <div className={styles.courseCardTitle}>{title || "UNKNOWN TITLE"}</div>
       <div className={styles.courseCardPrice}>
         {`${price ? `${price} €` : "UNKNOWN PRICE"}`}
@@ -53,7 +63,6 @@ export const CourseCard = (props: ICourseCardProps) => {
       </ul>
       <div className={styles.courseCardActions}>
         <Button title="Jetzt bestellen" onClick={onOrderHandler} />
-        <Button title="Kurs entfernen" onClick={onDeleteHandler} />
       </div>
     </div>
   );
