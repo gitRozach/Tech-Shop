@@ -1,6 +1,6 @@
 .courseCardWrapper {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto auto auto 10rem auto;
   grid-template-columns: 100%;
   
   padding: 1rem;
@@ -62,7 +62,7 @@
     list-style: none;
     margin: 0;
     color: rgb(140, 140, 140);
-    max-height: 4.5rem;
+    max-height: 8rem;
     overflow-y: auto;
 
     .tagItem {
